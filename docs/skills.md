@@ -1,11 +1,21 @@
 # Skills
 
-Skills are structured thinking protocols under `.claude/skills/<name>/SKILL.md`. Each declares its own
-triggers in the frontmatter `description` ("Use when …" / "NOT for …"); Claude invokes a matching skill
-automatically via the `Skill` tool. Skills guide *how to reason*, complementing agents (which *do* the
-work) and commands (which *run a workflow*).
+Skills under `.claude/skills/<name>/SKILL.md` are the toolkit's workflows and thinking protocols. Each
+declares its own triggers in the frontmatter `description` ("Use when …" / "NOT for …"); Claude invokes a
+matching skill automatically via the `Skill` tool, or you invoke one explicitly as `/swe-skills:<name>`.
+Skills guide *how to reason* and encode *workflows* (implement, refactor, optimize, hand off),
+complementing agents (which *do* the delegated work).
 
 ## Drop-in skills (installed by `install.sh`)
+
+### `analytics-cleaner`
+Safely removes analytics, tracking, and telemetry code (mixpanel, segment, amplitude, datadog, newrelic,
+Google Analytics, `track_event`, `@monitor`, …) with mandatory user approval and zero functionality
+impact.
+- **Use when:** the user explicitly asks to "remove analytics", "strip tracking", "delete telemetry",
+  "get rid of mixpanel/segment/amplitude", or clean out instrumentation.
+- **Not for:** general dead-code cleanup (use `code-deletion`), refactoring, or removing critical SYSTEM
+  metrics — never auto-invokes without an explicit analytics-removal request.
 
 ### `battle-tested-patterns`
 Verifies architectural decisions against battle-tested patterns from AOSA (Architecture of Open Source
@@ -33,6 +43,13 @@ functionality.
 - Leads with an overengineering audit (a class that should be a function, an abstraction with one
   consumer, a registry for three items).
 
+### `context-implement`
+Context-driven implementation: reads the full conversation to extract the user's true intent, then
+plans, executes, self-critiques (Reflexion) and verifies — via Chain-of-Thought and ReAct.
+- **Use when:** "implement what we discussed", "build the feature from this chat", "apply the changes we
+  agreed on", "now implement it".
+- **Not for:** greenfield ideas with no prior chat context, pure research, or debugging an existing bug.
+
 ### `deliberate-thinking`
 Structured reasoning via a sequential-thinking MCP for complex decisions and large implementation
 planning.
@@ -41,12 +58,55 @@ planning.
   step", "plan", "what's the best approach"; `--seq` / `--think` flags.
 - **Not for:** trivial changes (<3 files), obvious-cause bug fixes, docs-only changes, pure research.
 
+### `generate-docs`
+Generates direct, no-fluff technical documentation as a `.md` file — present-tense "as-is" voice, zero
+metadata/changelog/marketing filler.
+- **Use when:** "generate docs", "write documentation", "document this system/API/module", "write a
+  README for X".
+- **Not for:** a session handoff (use `handoff`), marketing copy, or editing non-documentation prose.
+
+### `handoff`
+Produces an exhaustive session handoff written to `HANDOFF.md` so a future person or a fresh Claude
+session with zero context can resume without asking anything (timeline, files changed, decisions +
+rationale, failed approaches, next steps).
+- **Use when:** "hand off", "dump the context", "write a handoff", "save the session for later".
+- **Not for:** loading/resuming a prior handoff (use `load-handoff`), general documentation (use
+  `generate-docs`), or a quick status summary.
+
+### `load-handoff`
+Reconstructs the full context of a previous session from a `HANDOFF.md` file and reports any drift
+between the handoff and the current repo state (moved files, committed changes, branch switches).
+- **Use when:** "load handoff", "resume session", "pick up where we left off", or a fresh session that
+  needs the prior context restored.
+- **Not for:** writing/dumping the handoff (that is `handoff`).
+
 ### `meticulous-code-review`
 Detailed code inspection before declaring work complete.
 - **Use when:** about to say "done"/"ready"/"finished"; after writing >10 lines; "check my code", "any
   bugs?", "is this safe?"; modifying business logic or touching critical paths.
 - **Not for:** pure documentation, config-only changes, trivial typo fixes.
 - Re-reads every line, traces data flow, enumerates failure modes, verifies against requirements.
+
+### `optimize`
+Critical, documentation-validated performance optimization analysis (6-phase protocol) that may modify
+source code for speed while preserving behavior. Measure before optimizing.
+- **Use when:** the user explicitly asks to optimize or profile — "optimize this", "make it faster",
+  "improve performance", "profile", "reduce latency", "this is slow".
+- **Not for:** readability refactoring (use `refactor`), bug fixing, or read-only review.
+
+### `refactor`
+Safe refactoring orchestration that mutates source code to improve structure without changing behavior,
+guarded by an ephemeral characterization/regression safety net.
+- **Use when:** the user explicitly asks to refactor — "refactor this", "restructure", "split this
+  file", "extract", "clean up the structure".
+- **Not for:** performance optimization (use `optimize`), removing features or dead code (use
+  `code-deletion`), or bug fixing.
+
+### `reflect`
+Analyzes the current session for your OWN errors and saves generalizable, deduplicated lessons to
+`.claude/reflections.md`, filed under the correct category.
+- **Use when:** "reflect", "what did you learn", "save lessons", "retrospective", "capture takeaways".
+- **Not for:** reviewing code (use `meticulous-code-review`) or writing documentation.
 
 ### `scope-creep-prevention`
 Prevents a task from expanding beyond its original scope.
@@ -68,3 +128,13 @@ citations that add no information beyond prior knowledge.
 - **Use when:** after complex analysis with citations; before high-stakes decisions; "are you sure?",
   "verify your claims", "prove it"; debugging why a previous analysis was wrong.
 - **Not for:** simple factual lookups, or claims copy-pasted directly from code.
+
+### `write-prompt`
+Distills the current conversation plus code-anchored research into a self-sufficient, delimited XML
+prompt you paste into a fresh Claude Code session (or hand to a subagent) that shares no context.
+- **Use when:** "write/give me a prompt for…", building a meta-prompt, handing a task to a new
+  session with no shared context, or packaging a task spec for another agent to execute.
+- **Not for:** executing the task yourself, or a trivial instruction that needs no context transfer.
+- Runs a sufficiency gate first (asks the user on any requirement doubt; abstains only on unverified
+  code facts), then selects a startup point from the real discovered catalog with a native fallback
+  (`Explore` / `general-purpose` / `Plan`). Detail in `write-prompt/references/template.md`.

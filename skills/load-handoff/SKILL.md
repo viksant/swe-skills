@@ -1,13 +1,18 @@
 ---
 name: load-handoff
-description: 📥 Reconstruct the full context of a previous session from HANDOFF.md (fresh session, no context)
-color: cyan
-tools: Read, Bash, Grep, Glob
+description: >
+  Reconstruct the full context of a previous session from a HANDOFF.md file and report
+  any drift between the handoff and the current repo state (moved files, committed
+  changes, branch switches). Use when the user asks to resume/reconstruct/reload a
+  previous session from a handoff — "load handoff", "resume session", "pick up where we
+  left off", or a fresh session that needs the prior context restored.
+  NOT for: writing/dumping the handoff (that is the write side, /swe-skills:handoff).
+allowed-tools: Read, Bash, Grep, Glob
 model: opus
 ---
 
-> **Prerequisite:** Read `CLAUDE.md` first. Confirm with "📋 CLAUDE.md read ✓"
-> **File to load:** `docs/ai-context/HANDOFF.md`
+> **Prerequisite:** Read `CLAUDE.md` first (if present). Confirm with "📋 CLAUDE.md read ✓"
+> **File to load:** `docs/ai-context/HANDOFF.md` (produced by the write side, `/swe-skills:handoff`)
 > **Language of the summary to the user:** your project's working language.
 
 # 📥 LOADING CONTEXT FROM A PREVIOUS SESSION
@@ -16,7 +21,7 @@ model: opus
 
 This session starts WITH NO context. Your job is to reconstruct the mental state of the previous session by reading `HANDOFF.md` and leave the user ready to continue the task **without having to re-explain anything to you**.
 
-**Expected result:** after running this command, you (Claude) must know:
+**Expected result:** after running this skill, you (Claude) must know:
 1. What was being done and why
 2. What technical decisions were made and their rationale
 3. What approaches failed (so you do NOT repeat them)

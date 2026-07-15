@@ -1,12 +1,21 @@
 ---
+name: reflect
+description: >
+  Analyze the current session for your OWN errors and save generalizable, deduplicated
+  lessons to .claude/reflections.md, filed under the correct category. Use when the user
+  asks to reflect on / capture lessons from the session — "reflect", "what did you learn",
+  "save lessons", "retrospective", "capture takeaways", "session reflection".
+  NOT for: reviewing code (use meticulous-code-review) or writing documentation; do not
+  auto-invoke to write reflections unless explicitly asked.
 allowed-tools: Read, Edit, Write
-description: 🪞 Analyze session errors and save generalizable reflections
 model: opus
 ---
 
 ## Context
 
-- Existing reflections: !`cat .claude/reflections.md 2>/dev/null || echo "Empty"`
+First read `.claude/reflections.md` (use the `Read` tool; if the file does not exist yet,
+treat the existing reflections as empty and create it). You must know what is already
+recorded before adding anything — this is the input to Step 5 (deduplication).
 
 ## Your Mission
 
@@ -34,7 +43,7 @@ Review the conversation specifically looking for:
 - Moments where you were too verbose or unclear
 
 **Tooling Errors:**
-- Wrong tool for the task (e.g., grep when you should have used cclsp)
+- Wrong tool for the task (e.g., grep when you should have used an LSP tool)
 - Inefficient searches that took multiple attempts
 - Lack of use of available tools that would have been more efficient
 
@@ -71,7 +80,7 @@ CATEGORY: Database
 | **Database** | Schema, queries, migrations, connections, transactions |
 | **API** | Endpoints, validation, responses, authentication, HTTP |
 | **Frontend** | React, stores, components, TypeScript types, UI/UX |
-| **Tooling** | Tool usage (cclsp, grep, git), commands, IDEs |
+| **Tooling** | Tool usage (LSP, grep, git), commands, IDEs |
 | **Cleanup** | Code deletion, refactoring, dead code, deprecations |
 | **Architecture** | Patterns, structure, dependencies, system design |
 | **Communication** | Clarification with user, assumptions, requirement interpretation |
@@ -87,7 +96,7 @@ One line per reflection. It must be:
 
 **GOOD examples:**
 ```
-- Use LSP tools (cclsp) to find definitions before assuming code locations
+- Use LSP tools to find definitions before assuming code locations
 - Verify database schema before writing queries that assume structure
 - Read existing files before proposing modifications to understand context
 ```

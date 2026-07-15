@@ -460,12 +460,11 @@ For auto-exclude patterns, false positive detection, inheritance chain analysis,
 
 ---
 
-## Integration with Commands
+## Invoking This Skill
 
-The `/code-cleaner` command is the command form of this skill — it drives both modes:
-Mode A (surgical feature removal) and Mode B (verified dead-code removal).
-
-Use `/code-cleaner` for a guided step-by-step execution, or apply this skill's principles directly in any code-deletion scenario.
+Invoke this skill directly as `/swe-skills:code-deletion` — it drives both modes:
+Mode A (surgical feature removal) and Mode B (verified dead-code cleanup with the
+11-level verification). Or apply its principles directly in any code-deletion scenario.
 
 ---
 

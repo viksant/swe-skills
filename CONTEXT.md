@@ -5,8 +5,8 @@ Orientation for an agent or contributor working **inside** this repo. For the us
 
 ## What this repo is
 
-A universal, **product-agnostic** Claude Code configuration layer: reusable skills, slash commands,
-agents, and hooks that raise engineering rigor (epistemic honesty, simplicity, verification, adversarial
+A universal, **product-agnostic** Claude Code configuration layer: reusable skills, agents, and hooks
+that raise engineering rigor (epistemic honesty, simplicity, verification, adversarial
 review, multi-agent orchestration). It is published at `github.com/viksant/swe-skills` and ships as both
 a native Claude Code plugin and an `npx skills add` package.
 
@@ -21,13 +21,12 @@ one product, it does not belong here.
 
 ```
 .claude-plugin/   plugin.json + marketplace.json — the plugin/marketplace manifests
-skills/           8 skills, each <name>/SKILL.md (structured thinking protocols)
-commands/         9 slash commands, each <name>.md (step-by-step workflows)
+skills/           17 skills, each <name>/SKILL.md (thinking protocols + workflows)
 agents/           1 agent (battle-tested-architect.md) + _shared/ XML fragments + references/
 hooks/            10 hook scripts (.sh) + hooks.json (the plugin's hook wiring)
-shared/           4 shared reasoning fragments (cognitive-framework used by commands)
+shared/           4 shared reasoning fragments (cognitive-framework used by workflow skills)
 config/           settings.example.json (manual hook wiring for install.sh users)
-docs/             reference docs: agents, architecture, commands, getting-started, hooks, skills
+docs/             reference docs: agents, architecture, getting-started, hooks, skills
 install.sh        manual installer → <target>/.claude/
 prompting.md      prompting protocol (read on demand)
 statusline.sh     status line script
@@ -39,9 +38,9 @@ AGENTS.md         code conventions + task discipline (reference, not installed)
 
 | Surface | Command | Delivers |
 |---------|---------|----------|
-| Plugin | `/plugin marketplace add viksant/swe-skills` + `/plugin install swe-skills@swe-skills` | Everything: skills + commands + agents + hooks (hooks wired via `hooks/hooks.json`) |
+| Plugin | `/plugin marketplace add viksant/swe-skills` + `/plugin install swe-skills@swe-skills` | Everything: skills + agents + hooks (hooks wired via `hooks/hooks.json`) |
 | `npx skills add` | `npx skills add viksant/swe-skills` | Skills only → `.claude/skills/` (the CLI is skills-only) |
-| Manual | `./install.sh /path/to/your-project` | `skills/`, `commands/`, `agents/`, `hooks/`, `shared/` + `prompting.md` + `statusline.sh` → `<target>/.claude/`, plus `settings.example.json` alongside |
+| Manual | `./install.sh /path/to/your-project` | `skills/`, `agents/`, `hooks/`, `shared/` + `prompting.md` + `statusline.sh` → `<target>/.claude/`, plus `settings.example.json` alongside |
 
 Keep all three consistent when you change what ships: the plugin surface is defined by `.claude-plugin/`
 + `hooks/hooks.json`, the manual surface by `install.sh`, and every install command is documented in

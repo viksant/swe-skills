@@ -26,11 +26,6 @@
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/user-signal-detector.sh\"",
             "timeout": 3
-          },
-          {
-            "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/inject-prompt-forge.sh\"",
-            "timeout": 3
           }
         ]
       }

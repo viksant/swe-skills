@@ -5,7 +5,7 @@
 # Usage:
 #   ./install.sh <target-project-dir> [--dry-run] [--force]
 #
-# Copies the portable, ready-to-use pieces (skills, commands, agents, hooks,
+# Copies the portable, ready-to-use pieces (skills, agents, hooks,
 # shared, prompting.md, statusline.sh) into <target>/.claude/, and drops
 # settings.example.json alongside for you to wire by hand. docs/ (and the root
 # CLAUDE.md/AGENTS.md) are reference material and are NOT installed.
@@ -50,7 +50,7 @@ fi
 DEST="$TARGET/.claude"
 
 # Drop-in directories (copied recursively) and loose files.
-DIRS=(skills commands agents hooks shared)
+DIRS=(skills agents hooks shared)
 FILES=(prompting.md statusline.sh)
 
 copied=0

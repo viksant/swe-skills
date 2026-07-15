@@ -2,7 +2,7 @@
 
 The toolkit organizes a coding session around one idea: the **main loop is a conductor, not a
 player**. It triages the request, delegates heavy work to focused agents, and reviews what comes back.
-The drop-in skills, commands, agents, and hooks make that model concrete; this doc explains how they
+The drop-in skills, agents, and hooks make that model concrete; this doc explains how they
 fit together and how you extend them with your own agents.
 
 ## Orchestrator doctrine: director vs player

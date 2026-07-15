@@ -4,7 +4,7 @@
 
 Three methods. Method 1 delivers the full toolkit; method 2 is skills-only; method 3 is a manual copy.
 
-### Method 1 — Plugin (skills + commands + agents + hooks)
+### Method 1 — Plugin (skills + agents + hooks)
 
 Run inside a Claude Code session:
 
@@ -13,7 +13,7 @@ Run inside a Claude Code session:
 /plugin install swe-skills@swe-skills
 ```
 
-Installs all four surfaces and wires the hooks automatically via the bundled `hooks/hooks.json`, so you
+Installs all three surfaces and wires the hooks automatically via the bundled `hooks/hooks.json`, so you
 can **skip step 2** below.
 
 ### Method 2 — `npx skills add` (skills only)
@@ -22,8 +22,8 @@ can **skip step 2** below.
 npx skills add viksant/swe-skills
 ```
 
-Copies the 8 skills into `.claude/skills/`. The `skills` CLI is skills-only — commands, agents and hooks
-are **not** installed. Use method 1 or 3 for those.
+Copies all 17 skills into `.claude/skills/` (including the former slash-command workflows, now skills).
+The `skills` CLI is skills-only — agents and hooks are **not** installed. Use method 1 or 3 for those.
 
 ### Method 3 — Manual (`install.sh`)
 
@@ -35,7 +35,7 @@ From the toolkit root:
 
 This copies into `<target>/.claude/`:
 
-- `skills/`, `commands/`, `agents/`, `hooks/`, `shared/` (recursively)
+- `skills/`, `agents/`, `hooks/`, `shared/` (recursively)
 - `prompting.md`, `statusline.sh`
 - `settings.example.json` (dropped alongside, not merged)
 
@@ -65,7 +65,7 @@ The hooks are inert until registered in `settings.json`. Merge the shipped examp
 
 | Event | Hooks |
 |-------|-------|
-| `UserPromptSubmit` | `epistemic-honesty`, `cognitive-triage`, `user-signal-detector`, `inject-prompt-forge` |
+| `UserPromptSubmit` | `epistemic-honesty`, `cognitive-triage`, `user-signal-detector` |
 | `SessionStart` (startup/clear/compact/resume) | `simplicity-enforcer`, `code-quality-standards`, `concise-response-enforcer` |
 | `PreToolUse` (Write) | `concise-plan-mode` |
 | `PostToolUse` (Write/Edit/MultiEdit) | `post-write-review-hook` |
@@ -85,14 +85,10 @@ text, so you can paste the relevant script's output into your system prompt at l
 
 A skill is a `SKILL.md` under `.claude/skills/<name>/`. Its frontmatter `description` declares WHEN it
 applies ("Use when: …" / "NOT for: …"). Claude reads the descriptions and invokes a matching skill via
-the `Skill` tool before acting — no manual step required. Skills encode *how to think* about a class of
-task (verify before claiming done, simplify after implementing, review before finishing).
-
-### Commands
-
-A command is a markdown file under `.claude/commands/<name>.md`, invoked as `/<name>`. It contains an
-executable protocol the model follows step by step. Commands encode *a workflow* (plan, refactor,
-optimize, review, hand off a session).
+the `Skill` tool before acting — no manual step required — or you invoke one explicitly as
+`/swe-skills:<name>`. Skills encode *how to think* about a class of task (verify before claiming done,
+simplify after implementing, review before finishing) **and** *workflows* run step by step (implement,
+refactor, optimize, generate docs, hand off a session) — the latter were previously slash commands.
 
 ### Agents
 
@@ -124,7 +120,7 @@ rules tight — every line is a per-turn tax.
    code-quality, and concise-response doctrines injected.
 2. Ask for a small change. Watch `epistemic-honesty` and `user-signal-detector` shape the prompt, and
    `post-write-review-hook` remind you to review after an edit.
-3. Try a command: `/refactor`, `/optimize`, or `/generate-docs`.
+3. Try a workflow skill: `/swe-skills:refactor`, `/swe-skills:optimize`, or `/swe-skills:generate-docs`.
 4. When you finish real work, `completion-gate` blocks the turn close until you run verification — run
    the tests and show the output.
 

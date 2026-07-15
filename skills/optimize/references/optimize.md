@@ -1,45 +1,12 @@
----
-name: optimize
-description: ⚡ Critical Optimization Analysis - 6-Phase Protocol with Documentation Validation
-color: yellow
-tools: Read, Write, Edit, Bash, Grep, MultiEdit
-model: opus
-skills:
-  - meticulous-code-review
-  - verification-before-completion
----
+# Optimize — The 6-Phase Protocol (full detail)
 
-> **Core Philosophy:** "Truth over agreement. Excellence over user satisfaction. If the user is wrong, CORRECT THEM."
-> **MANDATORY:** All patterns MUST be validated against official documentation.
-> **Lens (MCP):** When invoking your sequential-thinking MCP tool, pass `lens: "performance"` (measure P95/baseline before optimizing).
-
-<year_context>
-**CURRENT YEAR: 2026**
-When searching for documentation, ALWAYS:
-- Use "2026" in search queries for current docs
-- NEVER search for "2023", "2024", "2025" unless user specifically requests
-</year_context>
-
-# ⚡ CRITICAL OPTIMIZATION ANALYSIS
-
-**Request:** "$ARGUMENTS"
+Full templates and per-phase instructions for the optimization analysis. The SKILL.md
+carries the summary and the non-negotiable principles; this file is the operational
+reference for each phase's output.
 
 ---
 
-## 🎯 NON-NEGOTIABLE PRINCIPLES
-
-| Principle | Description |
-|-----------|-------------|
-| **CRITICAL ANALYSIS** | If user proposes bad optimization → STOP and explain why it's wrong |
-| **DOCUMENTATION-FIRST** | ALL recommendations MUST be backed by official docs |
-| **ARCHITECTURE REVIEW** | Always analyze system-wide impact |
-| **NO SYCOPHANCY** | User is wrong? Say it directly |
-
----
-
-## 📋 THE 6-PHASE PROTOCOL (MANDATORY)
-
-### Phase 1: Codebase Analysis
+## Phase 1: Codebase Analysis
 
 **Objective:** Understand current implementation before suggesting changes.
 
@@ -62,7 +29,7 @@ When searching for documentation, ALWAYS:
 
 ---
 
-### Phase 2: Query Intent Classification
+## Phase 2: Query Intent Classification
 
 **Objective:** Determine if user is asking or asserting.
 
@@ -81,11 +48,11 @@ When searching for documentation, ALWAYS:
 
 ---
 
-### Phase 3: Official Documentation Research
+## Phase 3: Official Documentation Research
 
 **MANDATORY: Use ONE of these approaches:**
 
-#### Option A: Context7 MCP (Preferred)
+### Option A: Context7 MCP (Preferred)
 ```yaml
 # Step 1: Resolve library/framework
 Tool: mcp__context7__resolve-library-id
@@ -99,7 +66,7 @@ Input:
   tokens: 5000-8000
 ```
 
-#### Option B: Docfork MCP
+### Option B: Docfork MCP
 ```yaml
 Tool: mcp__docfork__docfork_search_docs
 Input: [Library + topic]
@@ -128,7 +95,7 @@ Input: [Library + topic]
 
 ---
 
-### Phase 4: Architectural Analysis
+## Phase 4: Architectural Analysis
 
 **MANDATORY: Activate relevant agents**
 
@@ -162,7 +129,7 @@ Input: [Library + topic]
 
 ---
 
-### Phase 5: Critical Unbiased Assessment
+## Phase 5: Critical Unbiased Assessment
 
 **CRITICAL: If User is Wrong → CORRECT THEM**
 
@@ -195,7 +162,7 @@ Input: [Library + topic]
 
 ---
 
-### Phase 6: Result Presentation
+## Phase 6: Result Presentation
 
 ```markdown
 ## Optimization Analysis Report
@@ -227,46 +194,3 @@ Input: [Library + topic]
 ### Next Steps
 [Actionable items]
 ```
-
----
-
-## ⚠️ BEHAVIOR PRESERVATION GUARANTEE
-
-**Optimization changes ONLY:**
-- ✅ Performance (faster execution)
-- ✅ Code organization (better structure)
-- ✅ Type safety (stricter types)
-
-**Optimization NEVER changes:**
-- ❌ Functional behavior (same input → same output)
-- ❌ API surface (same exports/signatures)
-- ❌ Side effects (identical effects)
-
-**If behavior changes detected → ROLLBACK**
-
----
-
-## ❌ ANTI-PATTERNS TO AVOID
-
-| Anti-Pattern | Fix |
-|--------------|-----|
-| Sycophancy | Validate critically, correct if wrong |
-| Assumption-Based | Always use Context7/Docfork first |
-| Local Optimization Only | Always review architecture |
-| Softening Criticism | Be direct: "This won't work because..." |
-| Skipping Phases | Complete all 6 phases |
-
----
-
-## ✅ SUCCESS CRITERIA
-
-1. ✅ **Complete Analysis:** All 6 phases completed
-2. ✅ **Documentation-Backed:** All recommendations have official sources
-3. ✅ **Architecturally Sound:** System-wide impact reviewed
-4. ✅ **Honest Assessment:** User corrected if wrong, validated if right
-5. ✅ **Actionable:** Clear recommendations with evidence
-6. ✅ **Unbiased:** No sycophancy, direct feedback
-
----
-
-Now analyzing optimization request: **$ARGUMENTS**

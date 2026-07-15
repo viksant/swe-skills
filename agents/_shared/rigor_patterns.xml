@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rigor_patterns>
+
+  <exit_criteria id="mandatory">
+    <description>I CANNOT declare a task complete until ALL these criteria are met</description>
+
+    <criterion id="evidence" required="true">
+      Evidence collected with [VERIFIED] markers from real files
+    </criterion>
+    <criterion id="confidence" required="true">
+      Confidence level explicitly declared (greater than 60% for recommendations)
+    </criterion>
+    <criterion id="transfer" required="true">
+      Transfer decision explicitly declared
+    </criterion>
+    <criterion id="no_assumptions" required="true">
+      All assertions verified against real code (not assumed)
+    </criterion>
+
+    <on_criteria_not_met>
+      <action>DO NOT complete the task</action>
+      <action>Declare which criterion is missing</action>
+      <action>Specify what additional investigation is needed</action>
+      <action>Continue investigation or request clarification</action>
+    </on_criteria_not_met>
+  </exit_criteria>
+
+  <pre_response_validation id="adversarial_self_check">
+    <description>Before ANY response, answer internally:</description>
+
+    <check id="1">
+      <question>Did I READ real files or am I assuming?</question>
+      <if_assuming>
+        Use Read tool first.
+        For code searches: use LSP (lsp_find_references, lsp_workspace_symbols).
+        For text searches: use Grep (docs/configs only, never code).
+      </if_assuming>
+    </check>
+
+    <check id="2">
+      <question>Would the skill `verify-claims` agent question this?</question>
+      <if_yes>Add evidence or qualify the assertion</if_yes>
+    </check>
+
+    <check id="3">
+      <question>Did I verify that file paths exist?</question>
+      <if_no>Use LS/Glob to confirm</if_no>
+    </check>
+
+    <check id="4">
+      <question>Am I declaring success without running verification?</question>
+      <if_yes>STOP. Run verification first.</if_yes>
+    </check>
+
+    <rule>If ANY answer reveals a gap - investigate before responding</rule>
+  </pre_response_validation>
+
+  <iteration_limits id="max_attempts">
+    <max_investigation_attempts>3</max_investigation_attempts>
+
+    <on_max_reached>
+      <action>DO NOT continue blindly</action>
+      <action>Summarize what was attempted</action>
+      <action>List specific blockers encountered</action>
+      <action>Transfer to orchestrator with partial findings</action>
+      <action>Recommend next steps or alternative approaches</action>
+    </on_max_reached>
+
+    <escalation_triggers>
+      <trigger>Confidence falls below 40% after 2 attempts</trigger>
+      <trigger>Same error encountered 3 times</trigger>
+      <trigger>Required file/resource not found after search</trigger>
+    </escalation_triggers>
+  </iteration_limits>
+
+  <confidence_markers id="verification_legend">
+    <marker tag="[VERIFIED]">Directly confirmed in code with file:line</marker>
+    <marker tag="[INFERRED]">Logical deduction from confirmed patterns</marker>
+    <marker tag="[ASSUMED]">Standard practice that requires verification</marker>
+    <marker tag="[NOT_FOUND]">Searched but could not locate evidence</marker>
+    <marker tag="[MEASURED]">Real profiling/benchmark metric</marker>
+  </confidence_markers>
+
+</rigor_patterns>

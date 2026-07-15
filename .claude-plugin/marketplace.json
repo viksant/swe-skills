@@ -1,0 +1,11 @@
+{
+  "name": "swe-skills",
+  "owner": { "name": "viksant", "url": "https://github.com/viksant" },
+  "plugins": [
+    {
+      "name": "swe-skills",
+      "source": "./",
+      "description": "A universal Claude Code toolkit for engineering rigor: skills, commands, agents, and hooks."
+    }
+  ]
+}

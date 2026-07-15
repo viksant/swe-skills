@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<standard_response_format>
+
+  <response_structure>
+    <section id="domain_check" required="true">
+      <field>is_my_domain: true/false</field>
+      <field>domain_category: agent specific</field>
+      <field>confidence_level: XX%</field>
+    </section>
+
+    <section id="investigation_findings" required="true">
+      <field>evidence_collected: list with [VERIFIED]/[INFERRED] markers</field>
+      <field>files_examined: real paths read</field>
+      <field>diagnosis: main finding with evidence</field>
+    </section>
+
+    <section id="recommendations" required="true">
+      <if_high_confidence>Specific recommendations with evidence</if_high_confidence>
+      <if_low_confidence>Need to investigate more + specific steps</if_low_confidence>
+    </section>
+
+    <section id="exit_validation" required="true">
+      <field>all_criteria_met: true/false</field>
+      <field>missing_criteria: list if applicable</field>
+    </section>
+
+    <section id="transfer_decision" required="true">
+      <field>should_transfer: true/false</field>
+      <field>transfer_to: specific agent or user</field>
+      <field>transfer_reason: why</field>
+    </section>
+  </response_structure>
+
+</standard_response_format>

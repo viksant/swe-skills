@@ -1,0 +1,376 @@
+# AOSA Patterns Index
+
+> **Source:** [The Architecture of Open Source Applications](https://aosabook.org/en/)
+> **Purpose:** Lightweight index for keyword-matching against architectural decisions.
+> **Usage:** Read by `battle-tested-architect` agent to identify relevant chapters before fetching.
+
+---
+
+## Volume 1: Architecture of Open Source Applications
+
+### Asterisk | Telephony, Queue Processing
+**URL:** https://aosabook.org/en/v1/asterisk.html
+**Keywords:** call-routing, channel-drivers, bridging, codec-translation, dialplan, event-driven, module-system, real-time-processing
+**Patterns:**
+- Channel abstraction layer isolating protocol details from call logic
+- Bridging framework for media stream routing between endpoints
+- Dialplan as declarative routing DSL with pattern matching
+- Module/plugin architecture for extensibility without core changes
+**Domain:** Real-time event processing, plugin architecture, message routing
+
+### Bash | Plugin Architecture, Extensibility
+**URL:** https://aosabook.org/en/v1/bash.html
+**Keywords:** parser, lexer, word-expansion, plugin, shell, process-management, signal-handling, job-control
+**Patterns:**
+- Multi-stage pipeline: lexer -> parser -> word expansion -> execution
+- Built-in command registration pattern for extensibility
+- Job control with process groups and signal propagation
+- Redirection as composable I/O stream manipulation
+**Domain:** Pipeline processing, extensible command systems
+
+### Berkeley DB | Database Architecture, Storage Engine
+**URL:** https://aosabook.org/en/v1/bdb.html
+**Keywords:** btree, hash, queue, lock-manager, buffer-pool, transaction-log, recovery, ACID, embedded-database
+**Patterns:**
+- Layered access method abstraction (Btree, Hash, Queue, Recno)
+- Write-ahead logging (WAL) for crash recovery
+- Lock manager with deadlock detection
+- Buffer pool management with configurable eviction policies
+- Subsystem isolation enabling independent testing
+**Domain:** Storage engines, transaction management, embedded databases
+
+### Graphite | Time-Series, Monitoring
+**URL:** https://aosabook.org/en/v1/graphite.html
+**Keywords:** time-series, whisper, carbon, metrics, retention-policy, aggregation, dashboard, real-time-graphing
+**Patterns:**
+- Fixed-size database (Whisper) with automatic downsampling
+- Carbon daemon for metric ingestion with buffering
+- Hierarchical metric naming for namespace isolation
+- Render pipeline with function composition for data transformation
+**Domain:** Metrics collection, time-series storage, monitoring dashboards
+
+### HDFS | Distributed Storage, Replication
+**URL:** https://aosabook.org/en/v1/hdfs.html
+**Keywords:** namenode, datanode, replication, block-storage, fault-tolerance, rack-awareness, distributed-filesystem, heartbeat
+**Patterns:**
+- Master-worker (NameNode/DataNode) with heartbeat monitoring
+- Block replication with rack-aware placement strategy
+- Write pipeline: client -> DataNode chain for parallel replication
+- Checkpoint and journal-based metadata recovery
+- Lease management for write consistency
+**Domain:** Distributed storage, fault tolerance, data replication
+
+### LLVM | Compiler Infrastructure, Plugin/IR
+**URL:** https://aosabook.org/en/v1/llvm.html
+**Keywords:** intermediate-representation, pass-manager, optimization, code-generation, modular-compiler, plugin, JIT, target-abstraction
+**Patterns:**
+- Three-phase compiler: frontend -> IR optimizer -> backend
+- Pass-based optimization pipeline with composable transformations
+- Target-independent IR enabling cross-platform code generation
+- Plugin architecture for custom optimization passes
+**Domain:** Pipeline architecture, IR/intermediate representations, plugin systems
+
+### Mercurial | Distributed VCS, Content Addressing
+**URL:** https://aosabook.org/en/v1/mercurial.html
+**Keywords:** revlog, manifest, changeset, distributed, content-hash, delta-compression, wire-protocol, extension-system
+**Patterns:**
+- Revlog: append-only storage with delta compression
+- Content-addressable storage using SHA-1 hashing
+- Extension system for adding features without modifying core
+- Wire protocol abstraction for transport independence
+**Domain:** Content-addressable storage, distributed systems, extensibility
+
+### NoSQL Ecosystem | Database Selection, Trade-offs
+**URL:** https://aosabook.org/en/v1/nosql.html
+**Keywords:** CAP-theorem, eventual-consistency, partitioning, column-store, document-store, graph-database, key-value, sharding
+**Patterns:**
+- CAP theorem practical trade-offs per use case
+- Partitioning strategies (hash, range, consistent hashing)
+- Eventual consistency models with conflict resolution
+- Polyglot persistence: right database for each workload
+**Domain:** Database selection, distributed consistency, data modeling
+
+### Riak | Distributed Database, Consistent Hashing
+**URL:** https://aosabook.org/en/v1/riak.html
+**Keywords:** consistent-hashing, vnodes, vector-clocks, read-repair, hinted-handoff, anti-entropy, masterless, CAP
+**Patterns:**
+- Consistent hashing ring with virtual nodes (vnodes)
+- Read repair and anti-entropy for eventual consistency
+- Hinted handoff for temporary node failure tolerance
+- Vector clocks for conflict detection in concurrent writes
+- Masterless architecture eliminating single points of failure
+**Domain:** Distributed databases, consistent hashing, fault tolerance
+
+### Selenium WebDriver | Testing Architecture
+**URL:** https://aosabook.org/en/v1/selenium.html
+**Keywords:** browser-automation, driver-abstraction, wire-protocol, cross-browser, command-pattern, page-object
+**Patterns:**
+- Driver abstraction layer per browser with unified API
+- Wire protocol (JSON over HTTP) for language-agnostic communication
+- Command pattern for serializable browser actions
+- Page Object pattern for test maintainability
+**Domain:** Testing infrastructure, abstraction layers, wire protocols
+
+### Sendmail | Queue Processing, Mail Delivery
+**URL:** https://aosabook.org/en/v1/sendmail.html
+**Keywords:** mail-queue, MTA, delivery-agent, envelope, retry-policy, queue-runner, ruleset, address-rewriting
+**Patterns:**
+- Queue-based processing with configurable retry policies
+- Envelope/content separation for routing vs payload
+- Delivery agent abstraction for multiple transport protocols
+- Ruleset-based address rewriting pipeline
+- Queue runner with exponential backoff on failures
+**Domain:** Queue-based processing, message delivery, retry strategies
+
+### SocialCalc | Real-Time Collaboration
+**URL:** https://aosabook.org/en/v1/socialcalc.html
+**Keywords:** spreadsheet, real-time, collaboration, command-log, audit-trail, thin-client, event-sourcing
+**Patterns:**
+- Command log as event source for undo/redo and collaboration
+- Thin client architecture with server-side computation
+- Audit trail via serialized command history
+- Cell dependency graph for recalculation ordering
+**Domain:** Real-time collaboration, event sourcing, command patterns
+
+---
+
+## Volume 2: Architecture of Open Source Applications
+
+### Scalable Web Architecture | Distributed Systems
+**URL:** https://aosabook.org/en/v2/distsys.html
+**Keywords:** load-balancing, caching, CDN, proxy, queue, redundancy, partition, horizontal-scaling, microservices
+**Patterns:**
+- Horizontal scaling with stateless services behind load balancers
+- Multi-tier caching (CDN, reverse proxy, application, database)
+- Queue-based decoupling of write-heavy and read-heavy paths
+- Data partitioning strategies (functional, key-based, directory)
+- Redundancy at every tier for fault tolerance
+**Domain:** Web architecture, scaling strategies, caching layers
+
+### Git | Content-Addressable Storage
+**URL:** https://aosabook.org/en/v2/git.html
+**Keywords:** content-addressable, SHA, DAG, object-store, packfile, reflog, merge-strategy, distributed
+**Patterns:**
+- Content-addressable object store (blob, tree, commit, tag)
+- DAG-based history enabling efficient branching/merging
+- Packfile compression with delta encoding for storage efficiency
+- Reflog for local history safety net
+- Three-way merge with pluggable strategy selection
+**Domain:** Content-addressable storage, DAG structures, version control
+
+### GHC | Compiler Runtime, Concurrency
+**URL:** https://aosabook.org/en/v2/ghc.html
+**Keywords:** STM, green-threads, runtime-system, garbage-collector, type-inference, lazy-evaluation, sparks, parallel
+**Patterns:**
+- Software Transactional Memory (STM) for composable concurrency
+- Green thread scheduler (lightweight threads over OS threads)
+- Generational garbage collector with thread-local allocation
+- Spark pool for speculative parallelism
+**Domain:** Concurrency primitives, runtime systems, memory management
+
+### nginx | High-Performance Server, Concurrency
+**URL:** https://aosabook.org/en/v2/nginx.html
+**Keywords:** event-driven, non-blocking, worker-process, connection-pooling, reverse-proxy, load-balancing, filter-chain, C10K
+**Patterns:**
+- Event-driven non-blocking I/O (epoll/kqueue) for C10K+ connections
+- Master-worker process model with privilege separation
+- Worker-per-core scaling (CPU-bound vs I/O-bound optimization)
+- Filter chain pipeline (streaming data like Unix pipes)
+- Shared memory zones for cross-worker state (rate limiting, caching)
+**Domain:** High-concurrency servers, reverse proxy, connection management
+
+### matplotlib | Plugin Architecture, Rendering
+**URL:** https://aosabook.org/en/v2/matplotlib.html
+**Keywords:** backend-abstraction, renderer, artist, figure, axes, event-model, plugin-backend, transformation-pipeline
+**Patterns:**
+- Backend abstraction: same API for different rendering targets
+- Artist hierarchy for composable drawing primitives
+- Transformation pipeline for coordinate system conversions
+- Event model for interactive figure manipulation
+**Domain:** Plugin/backend architecture, rendering pipelines
+
+### MediaWiki | Multi-Tenant, Content Management
+**URL:** https://aosabook.org/en/v2/mediawiki.html
+**Keywords:** wiki, multi-tenant, parser, caching, database-abstraction, skin-system, extension-hooks, internationalization
+**Patterns:**
+- Database abstraction layer supporting multiple backends
+- Multi-layer caching (parser cache, Squid/Varnish, Memcached)
+- Hook/extension system for feature injection without core modification
+- Skin system as presentation layer abstraction
+- Wiki farm (multi-tenant) with shared codebase
+**Domain:** Multi-tenant systems, content management, caching strategies
+
+### Moodle | Multi-Tenant, Plugin System
+**URL:** https://aosabook.org/en/v2/moodle.html
+**Keywords:** LMS, multi-tenant, plugin-system, role-based-access, database-abstraction, activity-module, gradebook
+**Patterns:**
+- Plugin architecture with 30+ plugin types and standardized API
+- Role-based access control with context hierarchy
+- Database abstraction layer (DML/DDL) for portability
+- Activity module pattern for extensible content types
+- Multi-tenant via separate databases or shared schema with prefixes
+**Domain:** Multi-tenant, role-based access, plugin ecosystems
+
+### Puppet | Declarative Configuration, Idempotency
+**URL:** https://aosabook.org/en/v2/puppet.html
+**Keywords:** declarative, idempotent, resource-abstraction, catalog, agent-master, fact-gathering, dependency-graph
+**Patterns:**
+- Declarative resource model (desired state, not imperative steps)
+- Resource Abstraction Layer (RAL) hiding OS differences
+- Catalog compilation: manifest -> AST -> resource graph
+- Dependency graph with topological sort for execution order
+- Idempotent operations: safe to run repeatedly
+**Domain:** Configuration management, declarative systems, idempotency
+
+### PyPy | Optimization, Interpretation
+**URL:** https://aosabook.org/en/v2/pypy.html
+**Keywords:** JIT, tracing, meta-interpreter, RPython, optimization, warmup, guard, bridge
+**Patterns:**
+- Meta-tracing JIT: automatic JIT generation from interpreter
+- Guard-based speculation with deoptimization fallback
+- Warmup strategy: interpret first, JIT hot paths
+- Bridge compilation for handling guard failures efficiently
+**Domain:** Performance optimization, JIT compilation, interpreters
+
+### SQLAlchemy | ORM, Database Abstraction
+**URL:** https://aosabook.org/en/v2/sqlalchemy.html
+**Keywords:** ORM, unit-of-work, identity-map, connection-pool, dialect, expression-language, session, lazy-loading
+**Patterns:**
+- Unit of Work pattern for batched, ordered database operations
+- Identity Map ensuring one object instance per database row per session
+- Connection pool with configurable overflow and recycling
+- Dialect system abstracting SQL differences across databases
+- Core expression language separate from ORM for flexibility
+**Domain:** Database abstraction, connection pooling, ORM architecture
+
+### Twisted | Async Framework, Event Loop
+**URL:** https://aosabook.org/en/v2/twisted.html
+**Keywords:** event-loop, reactor, deferred, protocol, transport, callback-chain, async, non-blocking
+**Patterns:**
+- Reactor pattern: single-threaded event loop with multiplexed I/O
+- Deferred/callback chain for composable async operations
+- Protocol/Transport separation (business logic vs wire format)
+- Protocol factories for connection lifecycle management
+- Cooperative multitasking via inlineCallbacks/coroutines
+**Domain:** Async programming, event loops, network protocols
+
+### ZeroMQ | Messaging, Distributed Patterns
+**URL:** https://aosabook.org/en/v2/zeromq.html
+**Keywords:** messaging, pub-sub, push-pull, request-reply, broker-less, lock-free, zero-copy, io-thread
+**Patterns:**
+- Broker-less messaging eliminating single point of failure
+- Lock-free algorithms for high-throughput message passing
+- I/O thread pool with lockless message queues between threads
+- Socket type patterns: PUB/SUB, PUSH/PULL, REQ/REP, DEALER/ROUTER
+- Zero-copy message transfer minimizing memory overhead
+- Batching and adaptive algorithms for throughput optimization
+**Domain:** Message passing, pub/sub, distributed communication
+
+---
+
+## Performance of Open Source Applications (POSA)
+
+### High-Performance Networking in Chrome | Connection Management
+**URL:** https://aosabook.org/en/posa/high-performance-networking-in-chrome.html
+**Keywords:** connection-pooling, DNS-prefetch, TCP-preconnect, SPDY, socket-pool, priority-queue, resource-scheduling
+**Patterns:**
+- Socket pool with per-host connection limits and priority scheduling
+- DNS prefetching and TCP preconnection for latency reduction
+- Resource prioritization based on content type and viewport
+- Connection coalescing reducing redundant connections
+**Domain:** Connection management, resource scheduling, latency optimization
+
+### From SocialCalc to EtherCalc | Real-Time Collaboration
+**URL:** https://aosabook.org/en/posa/from-socialcalc-to-ethercalc.html
+**Keywords:** real-time, websocket, operational-transformation, node.js, collaboration, performance-optimization
+**Patterns:**
+- WebSocket for persistent bidirectional communication
+- Server-side recalculation offloading from thin clients
+- Event-based architecture for collaborative editing
+- Node.js single-threaded event loop for I/O-bound collaboration workload
+**Domain:** Real-time systems, WebSocket, collaborative editing
+
+### Infinispan | Distributed Cache
+**URL:** https://aosabook.org/en/posa/infinispan.html
+**Keywords:** distributed-cache, consistent-hashing, eviction, write-behind, L1-cache, data-grid, replication, partitioning
+**Patterns:**
+- Consistent hashing for cache key distribution across nodes
+- L1 near-cache reducing network hops for frequently accessed data
+- Write-behind async store for reducing write latency
+- Eviction strategies (LRU, LIRS) for bounded memory usage
+- Data container abstraction separating storage from distribution
+**Domain:** Distributed caching, eviction strategies, data grids
+
+### Warp | High-Performance HTTP Server
+**URL:** https://aosabook.org/en/posa/warp.html
+**Keywords:** HTTP, high-performance, buffer-management, pipelining, timeout-manager, file-descriptor, sendfile
+**Patterns:**
+- Buffer management with reusable byte buffers reducing GC pressure
+- Timeout manager using a sorted list instead of per-connection timers
+- sendfile() system call for zero-copy file serving
+- HTTP pipelining support for reduced latency
+**Domain:** HTTP servers, buffer management, system-level optimization
+
+---
+
+## 500 Lines or Less
+
+### A Web Crawler With asyncio Coroutines | Async Crawling
+**URL:** https://aosabook.org/en/500L/a-web-crawler-with-asyncio-coroutines.html
+**Keywords:** asyncio, coroutine, event-loop, crawler, non-blocking, semaphore, URL-frontier, concurrent
+**Patterns:**
+- Coroutine-based concurrency with explicit yield points
+- Semaphore-bounded concurrency for politeness/rate limiting
+- URL frontier with seen-set deduplication
+- Event loop integration for I/O multiplexing
+**Domain:** Async crawling, coroutines, rate limiting
+
+### Dagoba: an In-Memory Graph Database | Graph Database
+**URL:** https://aosabook.org/en/500L/dagoba-an-in-memory-graph-database.html
+**Keywords:** graph-database, query-pipeline, lazy-evaluation, vertex, edge, traversal, gremlin-like
+**Patterns:**
+- Lazy query pipeline with chainable traversal steps
+- Gremlin-like query language via method chaining
+- Adjacency list with indexed edges for O(1) neighbor lookup
+- Pipeline step composition for complex graph queries
+**Domain:** Graph databases, query pipelines, lazy evaluation
+
+### DBDB: Dog Bed Database | Key-Value Store
+**URL:** https://aosabook.org/en/500L/dbdb-dog-bed-database.html
+**Keywords:** key-value, btree, immutable, copy-on-write, crash-recovery, append-only, storage-engine
+**Patterns:**
+- Immutable binary tree with copy-on-write updates
+- Append-only file format for crash safety
+- Interface segregation: logical (tree) vs physical (storage) layers
+- Reference counting for garbage collection of unused nodes
+**Domain:** Key-value stores, immutable data structures, crash safety
+
+### A Continuous Integration System | CI Architecture
+**URL:** https://aosabook.org/en/500L/a-continuous-integration-system.html
+**Keywords:** CI, test-runner, dispatcher, observer-pattern, socket-communication, distributed-testing
+**Patterns:**
+- Observer pattern: commit observer -> dispatcher -> test runner
+- Socket-based communication for distributed test execution
+- Dispatcher as load balancer across test runner pool
+- Periodic polling with commit hash comparison for change detection
+**Domain:** CI/CD, distributed task execution, observer pattern
+
+### A Template Engine | Template Processing
+**URL:** https://aosabook.org/en/500L/a-template-engine.html
+**Keywords:** template, code-generation, compilation, sandboxing, context-variables, escaping
+**Patterns:**
+- Template compilation to Python bytecode for execution speed
+- Code generation from template AST to executable function
+- Context variable resolution with dot-notation traversal
+- Auto-escaping for XSS prevention in template output
+**Domain:** Template engines, code generation, security (escaping)
+
+### A Simple Web Server | HTTP Server Architecture
+**URL:** https://aosabook.org/en/500L/a-simple-web-server.html
+**Keywords:** HTTP, request-handler, routing, CGI, socket, server-architecture, dispatch
+**Patterns:**
+- Request handler dispatch via URL path matching
+- Handler registration pattern for extensible routing
+- Socket-level HTTP parsing and response formatting
+- Case class hierarchy for different handler types
+**Domain:** HTTP servers, request routing, handler patterns

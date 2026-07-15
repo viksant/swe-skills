@@ -1,0 +1,11 @@
+{
+  "name": "swe-skills",
+  "displayName": "SWE Skills",
+  "description": "A universal Claude Code toolkit that raises engineering rigor: epistemic honesty, simplicity enforcement, verification-before-completion, adversarial review, and a multi-agent orchestration model. Not tied to any product or stack.",
+  "version": "1.0.0",
+  "author": { "name": "viksant", "url": "https://github.com/viksant" },
+  "homepage": "https://github.com/viksant/swe-skills",
+  "repository": "https://github.com/viksant/swe-skills",
+  "license": "MIT",
+  "keywords": ["claude-code", "skills", "agents", "hooks", "code-review", "engineering-rigor", "orchestration"]
+}

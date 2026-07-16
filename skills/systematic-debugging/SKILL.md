@@ -181,6 +181,7 @@ You MUST complete each phase before proceeding to the next.
    - Deduplicate findings (consensus from 2+ agents = higher confidence)
    - Cross-validate conflicting findings between agents
    - Use the `verify-claims` skill to verify your top hypothesis
+   - Escalate to `Skill(skill="consensus-board")` when the root-cause hypothesis is high-stakes (auth · data · money · config) or the agents DISAGREE: it runs independent lenses on the SAME bug and measures whether they CONVERGE, before you commit to a fix
 
 1. **Find Working Examples**
    - Locate similar working code in the same codebase

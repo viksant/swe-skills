@@ -129,6 +129,7 @@ This flow composes existing skills — use them, don't reinvent them:
 - **battle-tested-patterns** — Phase 2a; shortlist patterns from the AOSA index before any deep research.
 - **deliberate-thinking** — Phase 4; structured reasoning on every 3+ variable / 3+ component / hard-to-revert decision.
 - **verification-before-completion** — gate every claim ("battle-tested", "handles 10×", a benchmark number) on real evidence (AOSA chapter / company case / repo `file:line` / a load-test result), never on assumption.
+- **consensus-board** — Phase 5 self-critique; when a design decision is HIGH-stakes with a hard / expensive reversal (3+ variables, 3+ components), escalate via `Skill(skill="consensus-board")` so independent lenses must CONVERGE on it before you commit — distinct from deep-review (domain coverage), this measures agreement of independent analyses.
 
 ---
 

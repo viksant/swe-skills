@@ -55,9 +55,10 @@ templates and per-phase instructions live in **`${CLAUDE_PLUGIN_ROOT}/skills/opt
 
 ## 🤝 COMPOSITION
 
-This skill composes two existing skills — use them, don't reinvent them:
+This skill composes three existing skills — use them, don't reinvent them:
 - **meticulous-code-review** — run it on any code you change before presenting results.
 - **verification-before-completion** — gate every "done / now faster" claim on real, measured evidence (baseline vs after), never on assumption.
+- **consensus-board** — before mutating hot-path code on a CONTESTED bottleneck diagnosis, escalate via `Skill(skill="consensus-board")` so independent lenses (profiling, algorithmic complexity, I/O, memory) must CONVERGE on the real bottleneck first.
 
 ---
 

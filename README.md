@@ -23,7 +23,7 @@ Installs all three surfaces and wires the hooks via the bundled `hooks/hooks.jso
 npx skills add viksant/swe-skills
 ```
 
-Copies all 29 skills into `.claude/skills/`. The `skills` CLI is skills-only, so agents and hooks are **not** installed by this method — use method 1 or 3 for those.
+Copies all 30 skills into `.claude/skills/`. The `skills` CLI is skills-only, so agents and hooks are **not** installed by this method — use method 1 or 3 for those.
 
 ### 3. Manual — `install.sh`
 
@@ -39,7 +39,7 @@ Copies the drop-in dirs (`skills/`, `agents/`, `hooks/`, `shared/`) plus `prompt
 
 | Phase | Delegates to | Adversarial board |
 |-------|--------------|-------------------|
-| Frame | `superpowers-brainstorming` | `general-purpose` (blue) vs `red-team-auditor` + `risk-assessor` |
+| Frame | `design-brainstorm` | `general-purpose` (blue) vs `red-team-auditor` + `risk-assessor` |
 | Architect | `/swe-skills:architect-design` | `battle-tested-architect` vs `security-guardian` + `async-performance-guardian` + `risk-assessor` + `impact-analyzer` |
 | Plan | `/swe-skills:write-plans` | `general-purpose` vs `red-team-auditor` + `impact-analyzer` |
 | Build | `/swe-skills:subagent-build` | runs `/swe-skills:senior-review` per task (`senior-code-auditor` vs `red-team-auditor`) |
@@ -62,7 +62,8 @@ Run a multi-step task. Invoke explicitly as `/swe-skills:<name>`; the heavy pipe
 | `subagent-build` | Execute a plan with one fresh-context subagent per task, a multi-reviewer gate, real per-task verification, and a final `senior-review`. |
 | `senior-review` | Review a session's diff — mechanical checks + behavioral analysis + blue (`senior-code-auditor`) vs red (`red-team-auditor`) synthesis. |
 | `deep-review` | Feature-focused deep review with a dynamic multi-agent panel. |
-| `superpowers-brainstorming` | Turn an idea into an approved design through one-question-at-a-time dialogue. |
+| `consensus-board` | Convene N independent fresh-context agents on the SAME problem via DIFFERENT lenses and measure CONVERGENCE to raise confidence on a high-stakes call — convergence, not `deep-review`'s domain coverage. |
+| `design-brainstorm` | Turn an idea into an approved design through one-question-at-a-time dialogue. |
 | `context-implement` | Implement from the conversation's intent — Chain-of-Thought, Reflexion self-critique, ReAct, no scope creep. |
 | `refactor` | Improve structure without changing behavior, guarded by an ephemeral characterization/regression safety net. |
 | `optimize` | Documentation-validated performance optimization (6-phase); may modify source for speed while preserving behavior. |
@@ -89,9 +90,9 @@ Auto-loaded to shape reasoning and verification when a task matches their trigge
 | `verify-claims` | Self-verify reasoning and citations to catch ungrounded claims (information-theoretic check). |
 | `scope-creep-prevention` | Keep a task within its original scope; resist "while I'm here" additions. |
 | `regression-safety-net` | Shield any code change with ephemeral characterization tests captured before, during, and after. |
-| `superpowers-test-driven-development` | Write the failing test first, watch it fail, then write minimal code. |
+| `test-first-development` | Write the failing test first, watch it fail, then write minimal code. |
 | `exhaustive-testing` | Generate and execute production-grade tests — concurrency, malformed input, failures, edge cases, adversarial scenarios. |
-| `superpowers-receiving-code-review` | Process code-review feedback correctly before implementing any of it. |
+| `apply-review-feedback` | Process code-review feedback correctly before implementing any of it. |
 
 Full catalog with triggers: [docs/skills.md](docs/skills.md).
 
@@ -141,7 +142,7 @@ claude-code-toolkit/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest (for /plugin install)
 │   └── marketplace.json     # marketplace entry (for /plugin marketplace add)
-├── skills/                  # 29 drop-in skills (<name>/SKILL.md) — workflows + thinking protocols
+├── skills/                  # 30 drop-in skills (<name>/SKILL.md) — workflows + thinking protocols
 ├── agents/                  # 7 drop-in agents (+ _shared/ XML fragments, references/)
 ├── hooks/                   # 10 hook scripts (.sh) + hooks.json (plugin wiring)
 ├── shared/                  # 4 shared reasoning fragments (cognitive-framework used by workflow skills)

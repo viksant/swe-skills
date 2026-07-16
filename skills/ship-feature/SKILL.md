@@ -7,7 +7,7 @@ description: >
   through a blue team (audits/defends it) -> a red team (refutes the blue =
   the reviewer of the reviewer) -> a synthesis (you arbitrate), writing a
   resumable dossier as it goes. It ORCHESTRATES the existing flow skills
-  (superpowers-brainstorming, architect-design, write-plans, subagent-build,
+  (design-brainstorm, architect-design, write-plans, subagent-build,
   deep-review, senior-review) — it does NOT reimplement them. Triggers:
   "ship this feature", "big feature end-to-end", "frame it, design it, plan
   it, build it with review at each step". NOT for: a small/localized change
@@ -29,7 +29,7 @@ disable-model-invocation: true
 > reviews both. They are teams working together, not a linear checklist.
 > **Reuse > reinvent:** each phase DELEGATES to an existing artifact
 > (`/swe-skills:architect-design`, `/swe-skills:write-plans`, `/swe-skills:subagent-build`,
-> `/swe-skills:deep-review`, the `superpowers-brainstorming` skill) and the board reuses the
+> `/swe-skills:deep-review`, the `design-brainstorm` skill) and the board reuses the
 > host's review agents. This skill is the GLUE (sequence + board + dossier + gates), not a copy.
 > **Final test:** *"If a hostile red team attacks EVERY artifact of this feature — the frame,
 > the architecture, the plan, the code — does any real defect survive the blue-vs-red cross?"*
@@ -69,7 +69,7 @@ F0 TRIAGE -> F1 FRAME -> F2 ARCHITECT -> F3 PLAN -> F4 BUILD -> [F5 DEEP-REVIEW]
 | Phase | Delegates to | Writes to dossier | Mandatory |
 |-------|--------------|-------------------|-----------|
 | F0 Triage | (this skill) | `00-index.md` | yes |
-| F1 Frame | `superpowers-brainstorming` skill (+ research fan-out) | `01-frame.md` | yes |
+| F1 Frame | `design-brainstorm` skill (+ research fan-out) | `01-frame.md` | yes |
 | F2 Architect | `/swe-skills:architect-design` | `02-architecture.md` | yes |
 | F3 Plan | `/swe-skills:write-plans` | the plan file (referenced) | yes |
 | F4 Build | `/swe-skills:subagent-build` | `04-build-log.md` | yes |
@@ -199,7 +199,7 @@ If the request is a CONTINUATION ("continue", "pick up where it was left") AND
 
 ## 5. PHASE 1 — FRAME -> board -> gate
 
-1. **Produce:** invoke the `superpowers-brainstorming` skill (one-question dialogue, HARD-GATE,
+1. **Produce:** invoke the `design-brainstorm` skill (one-question dialogue, HARD-GATE,
    delegates open questions to specialists). + a research fan-out `Task(subagent_type="Explore")`
    in parallel if it touches 3+ subsystems. Close with **VERIFIABLE success criteria** (not "make
    it work"). Write `01-frame.md`.

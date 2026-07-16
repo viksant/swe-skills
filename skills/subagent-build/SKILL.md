@@ -83,7 +83,7 @@ Task:
       conventions (don't bypass its config layer); follow its comment/docstring conventions;
       NO git add/commit/push (that is the user's call)
     - Testing: use regression-safety-net to characterize existing behavior BEFORE touching it;
-      use superpowers-test-driven-development (test-first) for new logic. Tests may be
+      use test-first-development (test-first) for new logic. Tests may be
       local/ephemeral per the project's conventions; run them with the project's test runner.
     - Money code (billing / quotas / payments): idempotency + atomicity, no "fix later"
     - Return a STATUS: DONE | DONE_WITH_CONCERNS | NEEDS_CONTEXT | BLOCKED + a summary
@@ -111,7 +111,7 @@ own context). All run against the task diff; ALL must pass:
 | 4 | **Domain/Security** (conditional) | if the task touches auth/IDOR/billing/tenant isolation -> `security-guardian` + a matching `<domain>-specialist` if the host defines one; if async/concurrency -> `async-performance-guardian`; other domains -> the host's matching specialist, else native `general-purpose` | domain invariants intact |
 
 Each finding is a hypothesis: reproduce it at file:line before accepting; evaluate red-team
-disputes on evidence (it can false-positive). Apply `superpowers-receiving-code-review`.
+disputes on evidence (it can false-positive). Apply `apply-review-feedback`.
 
 ### 2d. REAL per-task verification (not just at the end)
 

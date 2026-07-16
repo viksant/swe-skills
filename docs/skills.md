@@ -43,6 +43,17 @@ functionality.
 - Leads with an overengineering audit (a class that should be a function, an abstraction with one
   consumer, a registry for three items).
 
+### `consensus-board`
+Convenes N independent fresh-context agents on the SAME problem, each through a DIFFERENT lens, and
+measures whether they CONVERGE — so a caller can put more weight on a high-stakes conclusion.
+`disable-model-invocation`; invoked explicitly or escalated to by another skill.
+- **Use when:** "board of experts", "consensus check", "is this diagnosis solid?", "get more
+  confidence on this decision"; or another skill escalating a high-stakes / ambiguous call.
+- **Not for:** coverage-style multi-domain review (use `deep-review`), a blue-vs-red diff audit (use
+  `senior-review`), or a trivial / reversible call (no board needed).
+- Convergence, not coverage: divergence is an ALARM (fragile / mis-framed diagnosis); confidence comes
+  from INDEPENDENT agreement where each agent brings its own evidence, not from mere agreement.
+
 ### `context-implement`
 Context-driven implementation: reads the full conversation to extract the user's true intent, then
 plans, executes, self-critiques (Reflexion) and verifies — via Chain-of-Thought and ReAct.

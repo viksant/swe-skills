@@ -215,6 +215,6 @@ the number, it doesn't LOWER the risk. Reject it. Filter before you call the sui
 
 ## Related skills
 
-- New code (not existing) → **superpowers-test-driven-development** (test first, watch it fail).
+- New code (not existing) → **test-first-development** (test first, watch it fail).
 - Root cause of a bug before touching code → **systematic-debugging**.
 - Reviewing the finished diff → **meticulous-code-review** / **verification-before-completion**.

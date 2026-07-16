@@ -21,7 +21,7 @@ one product, it does not belong here.
 
 ```
 .claude-plugin/   plugin.json + marketplace.json — the plugin/marketplace manifests
-skills/           17 skills, each <name>/SKILL.md (thinking protocols + workflows)
+skills/           30 skills, each <name>/SKILL.md (thinking protocols + workflows)
 agents/           1 agent (battle-tested-architect.md) + _shared/ XML fragments + references/
 hooks/            10 hook scripts (.sh) + hooks.json (the plugin's hook wiring)
 shared/           4 shared reasoning fragments (cognitive-framework used by workflow skills)
